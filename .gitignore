@@ -1,0 +1,13 @@
+# binarios y temporales
+bench
+*.o
+*.out
+*.exe
+*.log
+# artefactos locales
+/.vscode/
+/.idea/
+/.cache/
+# datos pesados generados (puedes cambiar esto si quieres subirlos)
+data/*.csv
+plots/*
