@@ -118,37 +118,7 @@ mode,size,alpha_pct,aligned,algo,ns_per_call,bytes_per_call,GiB_s
 
 ---
 
-## 7) Randall...
-
-1) Verificar AVX2 y ambiente:
-```bash
-grep -i 'avx\|avx2' /proc/cpuinfo
-g++ --version
-uname -a
-```
-2) Compilar:
-```bash
-make clean && make -j
-```
-3) Correr el barrido oficial:
-```bash
-bash scripts/run_bench.sh
-```
-4) Generar gráficas:
-```bash
-python3 scripts/plot.py ./data/results_v2.csv ./plots/
-```
-5) Enviar resultados:
-- `data/results_v2.csv`
-- `plots/speedup_vs_size.png`
-- `plots/throughput_vs_alpha.png`
-
-> En x86_64 con AVX2, deberías ver **speedup > 1×** (avx2 más rápido que serial), sobre todo en tamaños medianos/grandes.  
-> En ARM/VM, “avx2” es fallback escalar y el speedup tiende a ~1×.
-
----
-
-## 8) Problemas comunes (y soluciones rápidas)
+## 7) Problemas comunes (y soluciones rápidas)
 
 - **No compila `immintrin.h`**: estás en ARM/aarch64. Es normal. El código usa guardas y cae en fallback. El AVX2 real se ve en x86_64.
 - **Permiso denegado en `run_bench.sh`**: `chmod +x scripts/run_bench.sh`.
